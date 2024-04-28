@@ -1,0 +1,189 @@
+        .Button {
+            width:100%;
+            padding: 20px 0;
+            text-align: center;
+            background-color: rgba(109, 236, 70, 0.856);
+            position: relative;
+            align-items: center;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        #address {
+            width: 100%;
+            padding: 50px 0;
+            text-align: center;
+            background-color: rgb(241, 178, 197); 
+            margin-top: 20px;
+        }
+        
+        .button1 {
+            width: 14.4vw;
+            padding: 20px 0px;
+            text-align: center;
+            background-color: rgb(25, 25, 206);
+			color: white;
+            position: relative;
+            align-items: center;
+            display: inline-block;
+            font-size: 20px;
+            margin: 4px 2px;
+			border-radius: 15px;
+            cursor: pointer;
+        }
+
+		#openNewAcc {
+			width:100%;
+		}
+
+		#closeAccount {
+			background-color: rgb(243, 78, 78);
+		}
+
+		.buttonRow {
+			display: flex;
+    		justify-content: center; /* Center the buttons horizontally */
+    		 /* Adjust the spacing between buttons as needed */
+		}
+
+        #div_userAccount {
+          width: 100%;
+          padding: 50px 0;
+          text-align: center;
+          background-color: rgb(182, 183, 235); 
+		  /* background-color: linear-gradient(to bottom left, #553c9a, #ee4b2b); */
+          margin-top: 10px;
+        }
+
+		input[type=text], input[type=number] {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+
+		input[type=button] {
+			width: 100%;
+			background-color: #100696ec;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			display: inline-block;
+		}
+
+		input[type=button]:hover {
+			background-color: #3d3d5e;
+		}
+
+		input[type="radio"] {
+			/* appearance: none; */
+			background-color: white;
+			margin: 8px;
+			font: inherit; 
+			color: currentColor;
+			width: 1.15em;
+			height: 1.85em;
+			border: 2.15em solid currentColor;
+			border-radius: 50%;
+			transform: translateY(-0.075em); 
+		}
+
+		div {
+			border-radius: 15px;
+			background-color: rgb(182, 183, 235); ;
+			padding: 20px;
+		}
+
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		th{
+			text-align: left;
+			padding: 8px;
+			/* background-color: #9be27a; */
+			color: white;
+		}
+
+		#balance {
+			font-family: Arial, Helvetica, sans-serif;
+			border-collapse: collapse;
+			width: 50%;
+			height: fit-content;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		#balance td, #balance th {
+			border: 1px solid #ddd;
+			padding: 8px;
+		}
+
+		#balance tr:nth-child(odd){background-color: rgb(182, 183, 235);}
+
+		#balance tr:hover {background-color: #ddd;}
+
+		#balance th {
+			padding-top: 12px;
+			padding-bottom: 12px;
+			text-align: left;
+			background-color: rgb(25, 25, 206);
+			color: white;
+		}
+
+		footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background-color: #f1f1f1;
+            padding: 5px 0;
+        }
+
+        footer p {
+            color: #888;
+            font-size: 14px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+		select {
+			width: 200px;
+			height: 30px;
+			padding: 5px;
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  		}
+		
+  
+  		/* Styles for the options inside the select dropdown */
+  		select option {
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			padding: 5px;
+			background-color: #fff;
+			color: #333;
+  		}
+  
+  		/* Styles for the select dropdown when it's opened */
+  		select:focus {
+			outline: none; 
+			border-color: #6d9eea; 
+			box-shadow: 0 2px 8px rgba(109, 158, 234, 0.5); 
+  		}
+  

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Welcome to the Distributed Banking System</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.4-rc.1/web3.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+    -->
+    <link rel="stylesheet" href="../CSS File/myStyle.css">
+</head>
+
+<body>
+	<!-- <h1><center>Welcome to the Decentralized Banking System</center></h1> -->
+	<h1><marquee direction="left" behavior="alternate">Welcome to the Decentralized Banking System</marquee></h1>
+	<div id="div_userAccount" style="display: none">
+		<p id="userAddress"></p>
+		<p id="walletBalance"></p>
+	</div>
+    
+    <p id="display"></p>
+	<!-- <p id="bankBalance" style="display: none"></p> -->
+	<div id="bankBalance" style="display: none;background-color: white;">
+		<center><h4 id="balanceHeading"></h4></center>  
+	  	<table id="balance">
+			<tr>
+				<th>Currency </br>(Crypto/Fiat Currency)</th>
+				<th>Current Balance <sup>*</sup></th>
+				<th>Equivalent WEI</th>
+			</tr>
+			<tr>
+				<td>Ether <img src="../Currency Logo/ethereum.png" alt="Ether Icon" style="display:inline;float: left; width:35px;height:35px;"></td>
+		  		<td id="td_Ether"></td>
+		  		<td id="td_Ether_WEI"></td>
+			</tr>
+			<tr>
+				<td>Indian Rupee<img src="../Currency Logo/inr.png" alt="INR Icon" style="display:inline;float: left;width:35px;height:35px;"></td></td>
+				<td id="td_INR"></td>
+				<td id="td_INR_WEI"></td>
+			</tr>
+			<tr>
+				<td>Dollar <img src="../Currency Logo/dollar.png" alt="Dollar Icon" style="display:inline;float: left;width:35px;height:35px;"></td></td>
+				<td id="td_Dollar"></td>
+				<td id="td_Dollar_WEI"></td>
+			</tr>
+			<tr>
+				<td>Euro <img src="../Currency Logo/euro.png" alt="Euro Icon" style="display:inline;float: left;width:35px;height:35px;"></td></td>
+				<td id="td_Euro"></td>
+				<td id="td_Euro_WEI"></td>
+			</tr>
+	  	</table>  
+	  	<center><h5><sup>*</sup> Please note that fiat currency balance may differ with time as per the currency exchange rate.</h5></center> 
+	  	<center><h6 id="exchangeRate"></h6></center>
+	</div>
+
+	<div id="div_openNewAcc" style="display: none">
+		<button id="openNewAcc" class="button1">Open a new Bank Account</button>
+	</div>
+
+	<div id="div_bankingOptions" style="display: none">
+		<h3><center>Options for e-Banking</center></h3>
+		<table id="bankingOptions">
+			<tr class="buttonRow">
+				<th><button id="deposit" class="button1">Deposit</button></th>
+				<th><button id="withdraw" class="button1">Withdraw</button></th>
+				<th><button id="fundTransfer" class="button1">Fund Trasfer</button></th>
+				<th><button id="currencyExchange" class="button1">Currency Exchange</button></th>
+				<th><button id="showBalance" class="button1">Account Balance</button></th>
+                <th><button id="closeAccount" class="button1">Close Account</button></th>
+			</tr>
+		</table>
+	</div>
+
+	<div id="div_form1" style="display: none">
+		<form id="form1">
+			<h3><center>Account Opening Form</center></h3>
+			<label for="form1_name">Enter Your Name: </label>
+			<input type="text" id="form1_name" placeholder="Type Your full name here. First character must be in CAPITAL and 2<Length<31.." required>
+			<table>
+				<tr>
+					<td>
+						<label for="form1_amount">Enter Initial Deposit Amount: </label>
+						<input type="number" min="1" id="form1_amount" placeholder="Deposit value (integer)> 0" required>
+					</td>
+					<td> Unit: </td>
+					<td>
+						<label for="form1_unit_wei">Wei (1 ETH = 10<sup>18</sup> Wei)</label>
+						<input type="radio" name="form1_unit" id="form1_unit_wei" value="wei" checked="checked">
+					</td>
+					<td>
+						<label for="form1_unit_INR">INR</label>
+						<input type="radio" name="form1_unit" id="form1_unit_INR" value="inr">
+					</td>
+					<td>
+						<label for="form1_unit_dollar">Dollar</label>
+						<input type="radio" name="form1_unit" id="form1_unit_dollar" value="dollar">
+					</td>
+					<td>
+						<label for="form1_unit_euro">Euro</label>
+						<input type="radio" name="form1_unit" id="form1_unit_euro" value="euro">
+					</td>
+				</tr>
+			</table>		
+			<table>
+				<tr>
+					<td><input type="button" id="form1_submit" value="Submit"></td>
+					<td><input type="button" id="form1_cancel" value="Cancel"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+	<div id="div_form2" style="display: none">
+		<form id="form2">
+			<h3><center>Deposit Form</center></h3>
+			<table>
+				<tr>
+					<td>
+						<label for="form2_amount">Enter Amount to be Deposited: </label>
+						<input type="number" min="1" id="form2_amount" placeholder="0 < Deposit value (integer) < Wallet Balance" required>	
+					</td>
+					<td style="padding: 50px 5px 50 px 5px;height:1.85em"> Unit:  </td>
+					<td>
+						<label for="form2_unit_wei">Wei (1 ETH = 10<sup>18</sup> Wei)</label>
+						<input type="radio" name="form2_unit" id="form2_unit_wei" value="wei" checked="checked">
+					</td>
+					<td>
+						<label for="form2_unit_INR">INR</label>
+						<input type="radio" name="form2_unit" id="form2_unit_INR" value="inr">
+					</td>
+					<td>
+						<label for="form2_unit_dollar">Dollar</label>
+						<input type="radio" name="form2_unit" id="form2_unit_dollar" value="dollar">
+					</td>
+					<td>
+						<label for="form2_unit_euro">Euro</label>
+						<input type="radio" name="form2_unit" id="form2_unit_euro" value="euro">
+					</td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td><input type="button" id="form2_submit" value="Submit"></td>
+					<td><input type="button" id="form2_cancel" value="Cancel"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+	<div id="div_form3" style="display: none">
+		<form id="form3">
+			<h3><center>Withdraw Form</center></h3>
+			<table>
+				<tr>
+					<td>
+						<label for="form3_amount">Enter Amount to be Withdrawn: </label>
+						<input type="number" min="1" id="form3_amount" placeholder="0 < Withdraw value (integer)< Bank Account Balance" required>	
+					</td>
+					<td>Unit: </td>
+					<td>
+						<label for="form3_unit_wei">Wei (1 ETH = 10<sup>18</sup> Wei)</label>
+						<input type="radio" name="form3_unit" id="form3_unit_wei" value="wei" checked="checked">
+					</td>
+					<td>
+						<label for="form3_unit_INR">INR</label>
+						<input type="radio" name="form3_unit" id="form3_unit_INR" value="inr">
+					</td>
+					<td>
+						<label for="form3_unit_dollar">Dollar</label>
+						<input type="radio" name="form3_unit" id="form3_unit_dollar" value="dollar">
+					</td>
+					<td>
+						<label for="form3_unit_euro">Euro</label>
+						<input type="radio" name="form3_unit" id="form3_unit_euro" value="euro">
+					</td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td><input type="button" id="form3_submit" value="Submit"></td>
+					<td><input type="button" id="form3_cancel" value="Cancel"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+	<div id="div_form4" style="display: none">
+		<form id="form4">
+			<h3><center>Fund Transfer Form</center></h3>
+			<table>
+				<tr>
+					<td>
+						<label for="form4_receiver">Enter Recipient's Address: </label>
+						<input type="text" id="form4_receiver" placeholder="Enter a valid Recipient's Address (in Hex) or Bank Account Number" required>
+					</td>
+					<td>
+						Recipient Selector:
+					</td>
+					<td>
+						<label for="form4_recipient_addr">by Address</label>
+						<input type="radio" name="form4_recipient_selector" id="form4_recipient_addr" value="addr" checked="checked">
+					</td>
+					<td>
+						<label for="form4_recipient_accNo">by Account Number</label>
+						<input type="radio" name="form4_recipient_selector" id="form4_recipient_accNo" value="accNo">
+					</td>
+				</tr>
+			</table>
+			
+			<table>
+				<tr>
+					<td>
+						<label for="form4_amount">Enter Amount to be Transferred: </label>
+						<input type="number" min="1" id="form4_amount" placeholder="0 < Transferred Value (integer)< Sender's Bank Account Balance" required>
+					</td>
+					<td>Unit: </td>
+					<td>
+						<label for="form4_unit_wei">Wei (1 ETH = 10<sup>18</sup> Wei)</label>
+						<input type="radio" name="form4_unit" id="form4_unit_wei" value="wei" checked="checked">
+					</td>
+					<td>
+						<label for="form4_unit_INR">INR</label>
+						<input type="radio" name="form4_unit" id="form4_unit_INR" value="inr">
+					</td>
+					<td>
+						<label for="form4_unit_dollar">Dollar</label>
+						<input type="radio" name="form4_unit" id="form4_unit_dollar" value="dollar">
+					</td>
+					<td>
+						<label for="form4_unit_euro">Euro</label>
+						<input type="radio" name="form4_unit" id="form4_unit_euro" value="euro">
+					</td>
+				</tr>
+			</table>	
+			<table>
+				<tr>
+					<td><input type="button" id="form4_submit" value="Submit"></td>
+					<td><input type="button" id="form4_cancel" value="Cancel"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
+	<div id="div_form5" style="display: none">
+		<form id="form5">
+			<h3><center>Currency Exchange Form</center></h3>
+			<table>
+				<tr>
+					<td>
+						<label for="form5_amount">Enter Amount to be Exchanged: </label>
+						<input type="number" min="1" id="form5_amount" placeholder="0 < Currency value (integer)< Bank Account Balance" required>	
+					</td>
+					<td>
+						<label for="form5_currency_from">From:</label>
+					</td>
+					<td>
+						<select name="form5_currency_from" id="form5_currency_from">
+					  		<option value="wei">Wei</option>
+					  		<option value="inr">INR</option>
+					  		<option value="dollar">Dollar</option>
+					  		<option value="euro">Euro</option>
+						</select> 
+					</td>
+					<td>
+						<label for="form5_currency_to">To:</label>
+					</td>
+					<td>
+						<select name="form5_currency_to" id="form5_currency_to">
+					  		<option value="wei">Wei</option>
+					  		<option value="inr">INR</option>
+					  		<option value="dollar">Dollar</option>
+					  		<option value="euro">Euro</option>
+						</select> 
+					</td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td><input type="button" id="form5_submit" value="Submit"></td>
+					<td><input type="button" id="form5_cancel" value="Cancel"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+	<footer>
+        <p class="copyright">
+            &copy; 2023 Blockchain-enabled e-Banking System. All rights reserved. Created by Debendranath Das, Indian Statistical Institute, Kolkata.
+        </p>
+    </footer>
+    <script src="../Javascript Files/myJS2.js"></script>
+</body>
+</html>
